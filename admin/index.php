@@ -33,12 +33,12 @@ if (isset($_SESSION['logged_in'])) {
 } else {
     if(isset($_POST['username'], $_POST['password'])) {
         $username = $_POST['username'];
-        $password = $_POST['password'];
+        $password = md5($_POST['password']);
         
         if (empty($username) or empty($password)) {
             $error = 'All fields are required!';
         } else {
-            $query = $pdo->prepare("SELECT * FROM users WHERE user_name = ? user_password = ?");
+            $query = $pdo->prepare("SELECT * FROM users WHERE user_name = ? AND user_password = ?");
 
             $query->bindValue(1, $username);
             $query->bindValue(2, $password);
@@ -46,8 +46,9 @@ if (isset($_SESSION['logged_in'])) {
             $query->execute();
 
             $num = $query->rowCount();
+            echo $num;
 
-            if ($num == 1) {
+            if ($num == 01) {
                 $_SESSION['logged_in'] = true;
                 header('Location: index.php');
                 exit();

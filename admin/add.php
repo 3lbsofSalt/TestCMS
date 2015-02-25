@@ -12,7 +12,7 @@ if (isset($_SESSION['logged_in'])) {
         if (empty($title) or empty($content)) {
             $error = 'All fields are required!';
         } else {
-            $query = $pdo->prepare('INSERT INTO articles (article_title, article_content, artical_timestamp) VALUES (?, ?, ?)');
+            $query = $pdo->prepare('INSERT INTO articles (article_title, article_content, article_timestamp) VALUES (?, ?, ?)');
 
             $query->bindValue(1, $title);
             $query->bindValue(2, $content);
@@ -28,7 +28,7 @@ if (isset($_SESSION['logged_in'])) {
 <html>
 <head>
     <title>CMS Tutorial</title>
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="../assets/style.css">
 </head>
 
 <body>
@@ -45,7 +45,8 @@ if (isset($_SESSION['logged_in'])) {
 
     <form action="add.php" method="post" autocomplete="off">
         <input type="text" name="title" placeholder="Title" /><br /> <br />
-        <textarea rows="15" cols="50" placeholder="Content"></textarea>
+        <textarea rows="15" cols="50" placeholder="Content" name="content"></textarea>
+        <input type="submit" value="Add Article" />
     </form>
 
 </div>
