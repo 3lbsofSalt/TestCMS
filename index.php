@@ -5,8 +5,6 @@
 
     $article = new Article;
     $articles = $article->fetch_all();
-
-
 ?>
 
 <html>
@@ -23,7 +21,7 @@
                 <?php foreach ($articles as $article) { ?>
                 <li><a href="article.php?id=<?php echo $article['article_id']; ?>"><?php echo $article['article_title']; ?></a>
                     - <small>
-                        Posted <?php// echo date('l jS', $article['article_timestamp']); ?>
+                        Posted <?php echo date('l jS', $article['article_timestamp']); ?>
                     </small></li>
                 <?php } ?>
             </ol>
